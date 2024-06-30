@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class LessonFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
+    protected $model = Lesson::class;
+
     public function definition(): array
     {
         return [
-            //
+            'classroom_id' => \App\Models\Classroom::inRandomOrder()->first()->id,
+            'branch_id' => \App\Models\Branch::inRandomOrder()->first()->id,
+            'teacher_id' => \App\Models\Teacher::inRandomOrder()->first()->id ?? null,
         ];
     }
 }
